@@ -16,15 +16,32 @@ import android.widget.LinearLayout;
 public class PicActivity extends AppCompatActivity {
 
     private ViewPager viewPager;
-    private ImageView[] tips; //装点点的ImageView数组
-    private ImageView[] mImageViews; //装ImageView数组
-    private int[] imgIdArray; //图片资源id
+    /**
+     * 装点点的ImageView数组
+     */
+
+    private ImageView[] tips;
+    /**
+     * 装ImageView数组
+     */
+    private ImageView[] mImageViews;
+    /**
+     * 图片资源id
+     */
+    private int[] imgIdArray;
     private static final int UPDATE_VIEWPAGER = 0;
     private int autoCurrIndex;
-    private int IS_ON_PAUSE = 0;    //标志当前页面是否可见
+    /**
+     * //标志当前页面是否可见
+     */
+    private int IS_ON_PAUSE = 0;
 
-    //定时轮播图片，需要在主线程里面修改 UI
+    /**
+     * 定时轮播图片，需要在主线程里面修改 UI
+     */
     private Handler mHandler = new Handler() {
+
+        @Override
         public void handleMessage(Message msg) {
             switch (msg.what) {
                 case UPDATE_VIEWPAGER:
@@ -35,11 +52,15 @@ public class PicActivity extends AppCompatActivity {
                         viewPager.setCurrentItem(msg.arg1, false);
                     }
                     break;
+                default:
+                    break;
             }
         }
     };
 
-    // 设置自动轮播图片，3s后执行
+    /**
+     * 设置自动轮播图片，3s后执行
+     */
     private Thread thread = new Thread(new Runnable() {
         @Override
         public void run() {
